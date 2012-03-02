@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+foo:
+  name: foo
+  user: john_with_different_tags
+
+de:
+  name: de
+  user: john
+
+de2:
+  name: de
+  user: john_with_different_tags
+  
+de3:
+  name: de
+  user: jane
+
+de4:
+  name: de
+  user: jane_in_a_different_group
+  
+bar:
+  name: bar
+  user: john
+
+bar2:
+  name: bar
+  user: jane
+
+bar3:
+  name: bar
+  user: jane_in_a_different_group

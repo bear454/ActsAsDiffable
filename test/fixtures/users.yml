@@ -1,0 +1,54 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+john:
+  name: John Doe
+  rank: 1
+  factor: 2.718281828459045
+  activated_on: 2010-11-17
+  biography: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a
+    justo sed mauris rutrum rutrum nec vitae ante. Mauris tincidunt, mi sed
+    commodo fermentum, velit magna pulvinar enim, nec fringilla elit risus in
+    dolor. Aenean a lacus nec sem iaculis lacinia eget sed leo. Quisque ipsum
+    velit, sodales non dapibus."
+  admin: false
+  group: one
+
+john_with_different_tags:
+  name: John Doe
+  rank: 1
+  factor: 2.718281828459045
+  activated_on: 2010-11-17
+  biography: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a
+    justo sed mauris rutrum rutrum nec vitae ante. Mauris tincidunt, mi sed
+    commodo fermentum, velit magna pulvinar enim, nec fringilla elit risus in
+    dolor. Aenean a lacus nec sem iaculis lacinia eget sed leo. Quisque ipsum
+    velit, sodales non dapibus."
+  admin: false
+  group: one
+
+jane:
+  name: Jane Doe
+  rank: 2
+  factor: 3.141592653589793
+  activated_on: 2005-01-01
+  biography: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a
+    justo sed mauris rutrum rutrum nec vitae ante. Mauris tincidunt, mi sed
+    commodo fermentum, velit magna pulvinar enim, nec fringilla elit risus in
+    dolor. Aenean a lacus nec sem iaculis lacinia eget sed leo. Quisque ipsum
+    velit, sodales non dapibus."
+  admin: true
+  group: one
+  
+jane_in_a_different_group:
+  name: Jane Doe
+  rank: 2
+  factor: 3.141592653589793
+  activated_on: 2005-01-01
+  biography: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a
+    justo sed mauris rutrum rutrum nec vitae ante. Mauris tincidunt, mi sed
+    commodo fermentum, velit magna pulvinar enim, nec fringilla elit risus in
+    dolor. Aenean a lacus nec sem iaculis lacinia eget sed leo. Quisque ipsum
+    velit, sodales non dapibus."
+  admin: true
+  group: two
+
