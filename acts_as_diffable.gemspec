@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
     "README",
     "Rakefile",
     "VERSION",
+    "acts_as_diffable.gemspec",
     "init.rb",
     "lib/acts_as_diffable.rb",
     "test/app_root/app/controllers/application_controller.rb",
