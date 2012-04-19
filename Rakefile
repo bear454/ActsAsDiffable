@@ -9,7 +9,7 @@ begin
     gem.authors = ["James Mason 'bear454'"]
     gem.add_dependency "activerecord"
   end
-  Jeweler::RubyGemsDotOrgTasks.new
+  Jeweler::RubygemsDotOrgTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
