@@ -7,7 +7,7 @@ begin
     gem.email = "jmason@suse.com"
     gem.homepage = "https://github.com/bear454/ActsAsDiffable"
     gem.authors = ["James Mason 'bear454'"]
-    gem.add_dependency "activerecord"
+    gem.add_dependency "activerecord", ">=2.3.14"
   end
   Jeweler::RubygemsDotOrgTasks.new
 rescue LoadError
