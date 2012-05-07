@@ -9,7 +9,7 @@ module ActiveRecord #:nodoc:
 
       def self.included(base)
         base.extend(ClassMethods)
-        
+
       end
 
       module ClassMethods
@@ -18,7 +18,7 @@ module ActiveRecord #:nodoc:
           extend ActiveRecord::Acts::Diffable::SingletonMethods
           include ActiveRecord::Acts::Diffable::InstanceMethods
         end
-        
+
       end
 
       module SingletonMethods
@@ -27,7 +27,7 @@ module ActiveRecord #:nodoc:
           definitions[name.to_s] = options if options[:eval] # otherwise just ignore it
           class_variable_set :@@manual_diff_definitions, definitions
         end
-        
+
         def manual_diff_definitions
           class_variable_get :@@manual_diff_definitions
         end
@@ -70,12 +70,12 @@ module ActiveRecord #:nodoc:
           }
           remove_unchanged_entries differences
         end
-        
+
         def timed_log(start_time, msg)
           puts "%04.2fs %s" % [(Time.now - start_time), msg]
         end
-        
-        # Helper for processing a single associated object, 
+
+        # Helper for processing a single associated object,
         # such as has_one (or belongs_to) associations.
         def singular_association_diff(left_parent, right_parent, association)
           association = association.to_s #instance_eval doesn't like symbols.  What'ev.
@@ -83,7 +83,7 @@ module ActiveRecord #:nodoc:
             left_parent.instance_eval(association),
             right_parent.instance_eval(association),
             association_ids(left_parent) )
-        end    
+        end
 
         # Helper for processing a collection of associated objects,
         # such as has_many (or habtm) association.
@@ -99,8 +99,8 @@ module ActiveRecord #:nodoc:
           # for each key_set, compare instances in each collection
           diff_set = {}
           key_sets.each do |key_set|
-            conditions = {}   
-            key_pattern.each_with_index{|k, i| conditions[k] = key_set[i] } 
+            conditions = {}
+            key_pattern.each_with_index{|k, i| conditions[k] = key_set[i] }
             left_instance = left_association_set.find{|i|
               conditions.collect{|cf,cv| i.send(cf) == cv}.all?
             }
@@ -109,7 +109,7 @@ module ActiveRecord #:nodoc:
             }
             diff_set[keyify(key_set)] = attributes_diff(left_instance, right_instance, association_ids(left_parent) )
           end
-          
+
           # clean up unchanged pairs
           remove_unchanged_entries diff_set
         end
@@ -121,22 +121,22 @@ module ActiveRecord #:nodoc:
             keyset[0]
           else
             keyset
-          end    
+          end
         end
-        
+
         # Helper for collecting ids to ignore.
         def association_ids(*instances)
           ['id'] + instances.collect{|i| i.class.to_s.underscore + '_id'}
         end
-        
+
         # Helper for handing objects with an attributes hash (a la ARec).
         def attributes_diff(left, right, ignore = [:id])
           left_attributes = case
-            when left.is_a?(Hash) then 
+            when left.is_a?(Hash) then
               left
-            when left.respond_to?(:attributes) then 
+            when left.respond_to?(:attributes) then
               left.attributes
-            else 
+            else
               left.instance_values
             end
           right_attributes = case
@@ -154,13 +154,13 @@ module ActiveRecord #:nodoc:
             generate_diff_hash(left_attributes, right_attributes, *ignore)
           end
         end
-        
+
         # Helper for thinning the herd
         def remove_unchanged_entries(diff_hash)
           return nil if !diff_hash
           diff_hash.delete_if{|k,v| v.nil? }
           if diff_hash.empty?
-            return nil 
+            return nil
           else
             return diff_hash
           end
@@ -171,7 +171,7 @@ module ActiveRecord #:nodoc:
         #
         # This here is the meat & potatoes!
         def generate_diff_hash(left, right, *ignore)
-          case [left.blank?, right.blank?] 
+          case [left.blank?, right.blank?]
           when [false, true] # the represented object was deleted
             { '_delete' => true } # inspired by nested_attributes
           when [true, false] # the represented object was added

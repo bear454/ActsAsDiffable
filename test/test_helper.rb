@@ -1,12 +1,13 @@
-# Set the default environment to sqlite3's in_memory database
-ENV['Rails.env.to_s'] ||= 'in_memory'
+# Configure Rails Environment
+ENV["RAILS_ENV"] = "test"
 
-# Load the Rails environment and testing framework
-require "#{File.dirname(__FILE__)}/app_root/config/environment"
-require 'test_help'
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "rails/test_help"
 
-# Undo changes to Rails.env.to_s
-silence_warnings {Rails.env.to_s = ENV['RAILS_ENV']}
+Rails.backtrace_cleaner.remove_silencers!
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 # Run the migrations
 ActiveRecord::Migrator.migrate("#{Rails.root}/db/migrate")
@@ -16,6 +17,6 @@ ActiveSupport::TestCase.class_eval do
   self.use_transactional_fixtures = true
   self.use_instantiated_fixtures = false
   self.fixture_path = "#{File.dirname(__FILE__)}/fixtures"
-  
+
   fixtures :all
 end
