@@ -6,10 +6,10 @@ module ActiveRecord #:nodoc:
 
       SINGULAR_MACROS = [:has_one, :belongs_to]
       PLURAL_MACROS   = [:has_many, :has_and_belongs_to_many]
+      IGNORE          = ["created_at", "updated_at"]
 
       def self.included(base)
         base.extend(ClassMethods)
-
       end
 
       module ClassMethods
@@ -18,7 +18,6 @@ module ActiveRecord #:nodoc:
           extend ActiveRecord::Acts::Diffable::SingletonMethods
           include ActiveRecord::Acts::Diffable::InstanceMethods
         end
-
       end
 
       module SingletonMethods
@@ -171,7 +170,7 @@ module ActiveRecord #:nodoc:
           when [false, true] # the represented object was deleted
             { '_delete' => true } # inspired by nested_attributes
           when [true, false] # the represented object was added
-            (ignore + %w(created_at updated_at)).each{|k| right.delete(k.to_s) }
+            (ignore + IGNORE).each{|k| right.delete(k.to_s) }
             return right # just return the attributes to add
           when [false, false] # the represented object changed
             # generate the attribute diffs from each side and
