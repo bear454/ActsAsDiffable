@@ -159,11 +159,7 @@ module ActiveRecord #:nodoc:
         def remove_unchanged_entries(diff_hash)
           return nil if !diff_hash
           diff_hash.delete_if{|k,v| v.nil? }
-          if diff_hash.empty?
-            return nil
-          else
-            return diff_hash
-          end
+          return diff_hash.presence
         end
 
         # Accepts a left & right hash, and an array of keys to ignore,
