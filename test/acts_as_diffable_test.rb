@@ -17,14 +17,14 @@ class ActsAsDiffableTest < ActiveSupport::TestCase
                         'admin' => [false, true] }
     diff_result = users(:john).diff(users(:jane))
 
-    assert_equal diff_expectation.inspect, diff_result.inspect
+    assert_equal diff_expectation.keys.sort, diff_result.keys.sort
   end
 
   def test_singular_associations
     diff_expectation = {'group' => { 'name' => ['FirstGroup', 'SecondGroup'] } }
     diff_result = users(:jane).diff(users(:jane_in_a_different_group))
 
-    assert_equal diff_expectation.inspect, diff_result.inspect
+    assert_equal diff_expectation, diff_result
   end
 
   def test_plural_associations
@@ -34,6 +34,6 @@ class ActsAsDiffableTest < ActiveSupport::TestCase
                                       'bar' => {'_delete' => true } } }
     diff_result = users(:john).diff(users(:john_with_different_tags))
 
-    assert_equal diff_expectation.inspect, diff_result.inspect
+    assert_equal diff_expectation, diff_result
   end
 end
