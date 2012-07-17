@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2012-05-07}
   s.description = %q{ActsAsDiffable provides a dead-simple way to compare two instances of a class, including any or all associations, or more complex relationships.}
   s.email = %q{jmason@suse.com}
+  s.files = Dir.glob("lib/**/*")
   s.extra_rdoc_files = [
     "README"
   ]
