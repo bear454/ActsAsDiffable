@@ -179,10 +179,20 @@ module ActiveRecord #:nodoc:
               return nil
             else
               diff_hash = left.diff(right).merge(right.diff(left)){|k, lv, rv| [lv, rv] }
+
               # remove any ignored attributes
               ignore.each {|k| diff_hash.delete(k.to_s) }
+
               # compress created_at/updated_at duplication
               diff_hash.delete('updated_at') if diff_hash['created_at'] == diff_hash['updated_at']
+
+              # remove ActiveSupport::TimeWithZone entries that aren't really different
+              # see http://blog.tddium.com/2011/08/07/rails-time-comparisons-devil-details-etc/ for details
+              diff_hash.delete_if do |k,v|
+                left[k].is_a?(ActiveSupport::TimeWithZone) &&
+                  left[k].to_i == right[k].to_i
+              end
+
               remove_unchanged_entries diff_hash
             end
           end
