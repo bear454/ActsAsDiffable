@@ -60,5 +60,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rails>, ["~> 3.2"])
   end
+  s.license = "MIT"
 end
 
