@@ -3,7 +3,8 @@ including any or all associations, or more complex relationships.
 
 The return is a hash*, suitable for digestion by case-based textualizers, 
 JSON processors, etc., in the form { 'attribute' => [from, to] }
-* In the instance of no changes, a nil is returned
+
+(* In the instance of no changes, a nil is returned)
  
 ## Usage
 
