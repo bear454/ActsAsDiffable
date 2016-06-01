@@ -5,14 +5,14 @@ The return is a hash*, suitable for digestion by case-based textualizers,
 JSON processors, etc., in the form { 'attribute' => [from, to] }
 * In the instance of no changes, a nil is returned
  
-== Usage
+## Usage
 
   class Foo < ActiveRecord::Base
     acts_as_diffable
   end
   > Foo.first.diff(Foo.last) => { 'bar' => ['foo', nil] }
 
-=== Associations
+### Associations
 
 For plural associations, a :diff_key option needs to be added to the association,
 defining how to relate disparate instances within each parent's collections.  
@@ -40,7 +40,7 @@ by adding a :diff option to the association that evaluates to true.
                                          'lastname'  => 'Doe' },
                     ['John', 'Doe'] => { '_deleted' => true   } } }
 
-=== More complex relationships
+### More complex relationships
 
 In addition to the marked associations, any method on the class that returns an
 ActiveRecord-ish object can be included in the diff by adding a 
